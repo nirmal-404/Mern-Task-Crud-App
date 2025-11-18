@@ -1,0 +1,45 @@
+name : build-and-lint
+
+# triggers: define when this workflow should run
+# trigger on push to branches
+on: 
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+# define a job or multiple jobs
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install Backend Dependancies
+        working-directory: server
+        run: npm ci
+
+      - name: Lint Backend
+        working-directory: server
+        run: npm run lint -- --max-warnings=0
+      
+      - name: Install Frontend Dependancies
+        working-directory: client
+        run: npm ci
+
+      - name: Lint Frontend
+        working-directory: client
+        run: npm run lint -- --max-warnings=0
+
+      - name: Build backend image
+        run: docker build -t mern-task-server ./server
+      
+      - name: Build frontend image
+        run: docker build -t mern-task-client ./client
