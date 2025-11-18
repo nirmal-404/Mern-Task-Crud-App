@@ -60,8 +60,8 @@ function App() {
     fetchTasks();
   };
 
-  let nirmal = 'unused variable'
-  
+  // let nirmal = 'unused variable'
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
