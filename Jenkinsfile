@@ -17,15 +17,15 @@ pipeline {
 
         stage('Prepare ENV') {
             steps {
-                sh'''
-                    mkdir -p seerver 
-                    cat > server/.env
-                    PORT=$PORT
-                    MONGO_URI=$MONGO_URI
-                    EOF
-                '''
-            }
-        }
+        sh '''
+            mkdir -p server
+            cat > server/.env <<EOF
+PORT=${PORT}
+MONGO_URI=${MONGO_URI}
+EOF
+        '''
+    }
+}
 
         stage('Build Docker Images') {
             steps {
