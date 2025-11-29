@@ -42,6 +42,11 @@ EOF
         stage ('Run with docker compose') {
             steps {
                 sh '''
+                    echo "Cleaning old containers..."
+                    docker compose down || true
+                    docker rm -f $(docker ps -aq) || true
+                    docker network prune -f || true
+
                     echo "Starting MERN app with docker compose..."
                     docker compose up -d
 
