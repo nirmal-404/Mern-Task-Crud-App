@@ -74,7 +74,7 @@ function App() {
             </div>
             <button
               onClick={() => setIsDialogOpen(true)}
-              className="bg-black hover:bg-slate-100 text-white hover:text-red-600 px-6 py-2 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="bg-black text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Add Task
             </button>
